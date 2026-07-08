@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد مدیریت وظایف</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen text-white p-6 relative">
+
+    <div class="absolute w-96 h-96 bg-indigo-600 rounded-full filter blur-[120px] opacity-20 -top-20 -right-20"></div>
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        <!-- هدر داشبورد -->
+        <header class="glass rounded-2xl p-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">داشبورد کاربری</h1>
+                <p class="text-xs text-gray-400 mt-1">خوش آمدید، {{ user.username }}</p>
+            </div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-500/20 hover:bg-red-500/30 text-red-200 border border-red-500/30 px-4 py-2 rounded-lg text-sm transition-all">
+                    خروج از سیستم
+                </button>
+            </form>
+        </header>
+
+        <!-- بخش آمار و وضعیت‌ها -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass p-6 rounded-2xl">
+                <span class="text-xs text-gray-400">وظایف در حال انجام</span>
+                <h3 class="text-3xl font-bold mt-2">۱۲</h3>
+            </div>
+            <div class="glass p-6 rounded-2xl">
+                <span class="text-xs text-gray-400">وظایف انجام شده</span>
+                <h3 class="text-3xl font-bold mt-2 text-green-400">۴۵</h3>
+            </div>
+            <div class="glass p-6 rounded-2xl">
+                <span class="text-xs text-gray-400">گزارشات ارسالی این ماه</span>
+                <h3 class="text-3xl font-bold mt-2 text-indigo-400">۸</h3>
+            </div>
+        </div>
+
+        <!-- لیست وظایف یا بخش خالی برای بعد -->
+        <main class="glass rounded-2xl p-6">
+            <h2 class="text-lg font-bold mb-4">وظایف من</h2>
+            <div class="text-center py-12 text-gray-400 text-sm">
+                هنوز وظیفه‌ای برای شما تعریف نشده است.
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
